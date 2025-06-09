@@ -7,17 +7,18 @@ import { updateTimestamps } from "../utils/timezoneConversion.js";
 const userSchema = new Schema({
     srNo: {
         type: Number,
-        required: true
+        // required: true
     },
     joinedBy: {
         type: mongoose.Schema.Types.ObjectId,
         refPath: 'joinedByType',  // <- Dynamically point to correct model
-        required: true
+        // required: true
     },
     joinedByType: {
         type: String,
         required: true,
-        enum: ['Admin', 'User']
+        enum: ['Admin', 'User'],
+        default: 'User'
     },
     uplines: [{
         type: mongoose.Schema.Types.ObjectId,
@@ -26,7 +27,8 @@ const userSchema = new Schema({
     role: {
         type: String,
         required: true,
-        enum: ['super', 'master', 'client']
+        enum: ['super', 'master', 'client'],
+        default: 'client'
     },
     uid: {
         type: String
